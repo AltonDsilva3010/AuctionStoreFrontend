@@ -1,38 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Bosch";
+  src: url("./fonts/Bosch.otf");
+}
+
+@font-face {
+  font-family: "Bossa";
+  src: url("./fonts/Bossa-ExpandedBold.94014de.woff2");
+}
+
+body {
+  background-color: #a8caff;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  /* background-color: blue; */
+  background: linear-gradient(#4470fc 0%, #4470fc 50%, #a8caff 100%);
+  font-family: "Bosch", sans-serif;
+  padding: 10px 20px 80px 20px;
+  /* margin: 30px 5vw; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.logo {
   color: white;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.logo img {
+  margin-top: 10px;
+  height: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.logo:hover {
+  color: #171614;
+}
+
+.navbar button {
+  color: white;
+  border: none;
+}
+
+.navbar ul li {
+  /* text-align: center; */
+}
+
+.navbar ul a {
+  color: white;
+  font-weight: 400;
+  font-size: 30px;
+  margin-left: 40px;
+}
+
+.all-prod {
+  max-height: 60vh;
+  background-color: #a8caff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 170px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 170px;
+  /* max-height: 50vh; */
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(#a8caff 0%, #a8caff 10%, #4470fc 100%);
+  padding: 80px 20px 10px 20px;
+  font-family: "Bosch", sans-serif;
+  color: white;
+
+  /* background-color: blue; */
+}
+
+@media only screen and (max-width: 900px) {
+  .center-container {
+    padding-bottom: 286px;
+    /* max-height: 50vh; */
   }
-  to {
-    transform: rotate(360deg);
+
+  .all-prod {
+    /* max-height: auto; */
+    padding-bottom: 1150px;
+  }
+
+  .footer {
+    padding: 0px 20px 10px 20px;
   }
 }

@@ -1,0 +1,14 @@
+.footer-cont {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-cont h3 {
+  font-size: 25px;
+}
+
+.image-cont-footer img {
+  height: 90px;
+}
