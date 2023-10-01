@@ -1,0 +1,42 @@
+.add-product {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-content {
+  background-color: #99bbff;
+  font-family: "Bossa";
+  padding: 20px 30px;
+  border-radius: 5px;
+  border: 3px solid white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1.2);
+}
+
+.modal-content form {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; */
+}
+
+.modal-content label {
+  color: white;
+  float: left;
+  margin: 5px;
+  /* padding: 5px 10px; */
+}
+
+.modal-content input {
+  float: right;
+  margin: 5px;
+  /* margin: ; */
+}
+
+.modal-content button {
+  position: relative;
+  left: 50%;
+  transform: translate(-80%, 0);
+  margin: 20px 0px 0px 0px;
+}

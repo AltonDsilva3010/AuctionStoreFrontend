@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductComp.css";
 import EpochCalc from "./EpochCalc";
 import AppleImage from "../images/ApplePNG.png";
@@ -16,6 +16,7 @@ const ProductComp = ({
 }) => {
   const { contract } = state;
   const [bidAmount, setBidAmount] = useState("");
+  const [compleStat, setCompleStat] = useState(false);
 
   const makeBid = async () => {
     console.log("inseid function 2");
@@ -31,6 +32,26 @@ const ProductComp = ({
       console.log(error);
     }
   };
+
+  const EndAuction = async () => {
+    const { contract } = state;
+    try {
+      const result = await contract.endAuction(productId);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const getCompleStatus = () => {
+      const currentTimeEpoch = Math.floor(Date.now() / 1000);
+      if (currentTimeEpoch - auctionEndTime.toString() > 0) {
+        setCompleStat(true);
+      }
+    };
+    getCompleStatus();
+  }, []);
 
   return (
     <div className="prod-comp">
@@ -55,16 +76,24 @@ const ProductComp = ({
           {"....." + highestBidder.slice(-10)}
         </span>
       </h4>
-      <h4>
-        Status:<span style={{ float: "right" }}>Completed</span>
-      </h4>
-      <input
-        type="number"
-        placeholder="Enter bid amount (in Ether)"
-        value={bidAmount}
-        onChange={(e) => setBidAmount(e.target.value)}
-      />
-      <button onClick={makeBid}>Place Bid</button>
+      {compleStat && (
+        <h4>
+          Status:<span style={{ float: "right" }}>Completed</span>
+        </h4>
+      )}
+
+      {!compleStat && (
+        <div>
+          <input
+            type="number"
+            placeholder="Enter bid amount (in Ether)"
+            value={bidAmount}
+            onChange={(e) => setBidAmount(e.target.value)}
+          />
+          <button onClick={makeBid}>Place Bid</button>
+        </div>
+      )}
+
       <Modal />
     </div>
   );

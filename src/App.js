@@ -5,6 +5,7 @@ import ProductComp from "./Components/ProductComp";
 import AuctionWebLogo from "./images/AuctionWebsiteLogowoCircle.png";
 import CenterComp from "./Components/CenterComp";
 import Footer from "./Components/Footer";
+import AddProducts from "./Components/AddProducts";
 const { ethers } = require("ethers");
 
 function App() {
@@ -16,10 +17,11 @@ function App() {
 
   const [isVisible, setIsVisible] = useState(false);
   const [allproducts, setAllProducts] = useState([]);
+  const [addprodModal, setAddProdModal] = useState(false);
 
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddress = "0x542910558f0B1493DAe39f620541EF0d5b5428A7";
+      const contractAddress = "0x78b190cc9165110C14FF12504461430294Dd96E4";
       const contractABI = abi.abi;
       try {
         let provider = new ethers.BrowserProvider(window.ethereum);
@@ -49,15 +51,6 @@ function App() {
     getAllProducts();
   }, [state]);
 
-  const addProduct = async () => {
-    console.log("inseid function 2");
-    const { contract } = state;
-    if (contract) {
-      const result = await contract.createProduct("Wheat", "Grain", 25);
-      console.log(result);
-    }
-  };
-
   const auctionEnd = async () => {
     const { contract } = state;
     if (contract) {
@@ -69,6 +62,10 @@ function App() {
   const handleClick = () => {
     // Toggle the visibility on click
     setIsVisible(!isVisible);
+  };
+
+  const toggleModal = () => {
+    setAddProdModal(!addprodModal);
   };
 
   return (
@@ -94,6 +91,11 @@ function App() {
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" onClick={handleClick}>
                   See-Products
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" onClick={toggleModal}>
+                  Add-Product
                 </a>
               </li>
               <li
@@ -134,6 +136,7 @@ function App() {
           </div>
         </div>
       </div>
+      {addprodModal && <AddProducts state={state} />}
       <div className="footer">
         <Footer />
       </div>
